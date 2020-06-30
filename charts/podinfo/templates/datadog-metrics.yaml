@@ -1,0 +1,21 @@
+apiVersion: flagger.app/v1beta1
+kind: MetricTemplate
+metadata:
+  name: podinfo-availability
+  namespace: default
+spec:
+  provider:
+    type: datadog
+    address: https://api.datadoghq.com
+    secretRef:
+      name: datadog
+  query: |
+    100 - (
+      sum:heimdall.response.count{
+        environment:dev,http.status_class:2xx,is_primary:false
+      }.as_count()
+      /
+      sum:heimdall.response.count{
+        environment:dev,is_primary:false
+      }.as_count()
+    ) * 100

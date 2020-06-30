@@ -41,9 +41,12 @@ spec:
     stepWeight: 5
     # NGINX Prometheus checks
     metrics:
-    - name: request-success-rate
+    - name: podinfo-availability
       # minimum req success rate (non 5xx responses)
       # percentage (0-100)
+      templateRef:
+        name: podinfo-availability
+        namespace: default      
       thresholdRange:
-        min: 99
-      interval: 1m
+        max: 10
+      interval: 120m
