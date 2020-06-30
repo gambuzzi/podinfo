@@ -12,10 +12,10 @@ spec:
   query: |
     100 - (
       sum:heimdall.response.count{
-        environment:dev,http.status_class:2xx,is_primary:false
+        environment:dev,http.status_class:2xx
       }.as_count()
       /
       sum:heimdall.response.count{
-        environment:dev,is_primary:false
+        environment:dev
       }.as_count()
     ) * 100
