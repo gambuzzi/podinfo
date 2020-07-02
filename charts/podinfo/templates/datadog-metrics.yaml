@@ -6,7 +6,7 @@ metadata:
 spec:
   provider:
     type: datadog
-    address: https://34.198.29.173
+    address: https://api.datadoghq.com
     secretRef:
       name: datadog
   query: |
